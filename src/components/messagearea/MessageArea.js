@@ -7,7 +7,7 @@ import {styles} from "./style";
 import {ViewFromMessage,ViewToMessage} from "../flatListAreaMessage/FlatListMessage";
 
 //Camada model e serviços
-import {messageService} from "../../../src/model/services/messageSocket";
+import {messageService} from "../../model/services/messageSocket";
 
 export default function MessageArea(){
 
