@@ -1,6 +1,6 @@
 import React,{useEffect} from "react";
 import {View, FlatList} from "react-native";
-import {useSelector,useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 
 //Estilos e Componentes 
 import {styles} from "./style";
@@ -11,21 +11,13 @@ import {messageService} from "../../model/services/messageSocket";
 
 export default function MessageArea(){
 
-    const dispatch = useDispatch();
-
     const message = useSelector(state=>state.MessageRedux);
     const UseForm = useSelector(state=>state.UseRedux);
+    const ServiceMessages = messageService();
 
     useEffect(()=>{
-        messageService(data=>{
-            dispatch({
-                type:"@message/GETMESSAGE",
-                message:data,
-            });
-        });
+        ServiceMessages.OnlisteningMessage();
     },[]);
-
-    console.log(message);
 
     const FlatListMessage = ({item}) => {
 

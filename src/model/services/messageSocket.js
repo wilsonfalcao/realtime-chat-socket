@@ -3,10 +3,23 @@ import {useDispatch} from "react-redux";
 
 const InitializeSocket = OpenConnection();
 
-export const messageService = (CallBack) =>{
+export const messageService = () =>{
 
-    InitializeSocket.on("chat-message",CallBack);
+    const dispatch = useDispatch();
 
+    function OnlisteningMessage(){
+        InitializeSocket.on("chat-message",data=>{
+            dispatch({
+                type:"@message/GETMESSAGE",
+                message:data,
+            });
+        });
+    }
+
+    return {
+        OnlisteningMessage,
+    }
+    
 }
 
 export const SenData =()=>{
